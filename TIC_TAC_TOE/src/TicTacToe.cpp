@@ -19,11 +19,11 @@ int main() {
 		switch (choice) {
 		case 'A':
 		case 'a':
-			game.singePlayer(run, running);
+			game.singePlayer(run, running, choice);
 				break;
 		case 'B':
 		case 'b':
-			game.twoPlayers(run, running);
+			game.twoPlayers(run, running, choice);
 			break;
 		case 'C':
 		case 'c':

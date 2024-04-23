@@ -146,6 +146,7 @@
     <ClCompile Include="src\TicTacToe.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\TTTelements.h" />
     <ClInclude Include="src\TTTLogic.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
