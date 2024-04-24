@@ -1,12 +1,9 @@
 #pragma once
 #include "TTTelements.h"
-#include <iostream>
-#include <windows.h>
 
 class TicTacToe {
 private:
 	Elements elem;
-	
 	 short checkwin() const {
 		for (short i = 0; i < elem.SIZE; i++)  /*Checks row and column*/ {
 			if (elem.matrix[i][0] == elem.matrix[i][1] && elem.matrix[i][1] == elem.matrix[i][2]) //row
@@ -61,11 +58,9 @@ void botMove(char (&matrix)[3][3], char& botMark, char& playerSide) {
 			}
 		}
 	}
-		// If no winning or blocking moves are available, make a random move
 	int move;
 	bool validMove = false;
-
-	while (!validMove) {
+	while (!validMove) { // If no winning or blocking moves are available, make a random move
 		move = rand() % 9 + 1;
 
 		int row = (move - 1) / elem.SIZE;
@@ -76,25 +71,6 @@ void botMove(char (&matrix)[3][3], char& botMark, char& playerSide) {
 			validMove = true;
 		}
 	}
-}
-void board(char& choice)  /*prints board for single player */ {
-	system("cls");
-	std::cout << "\tTIC - TAC - TOE\n"
-		<< "\t---------------\n\n";
-	if (choice == 'A' || choice == 'a')
-		std::cout << "PLAYER (" << elem.mark << ")  -- - AI (" << elem.botMark << ")\n\n\n";
-	else
-		std::cout << "PLAYER 1 (X)  ---  PLAYER 2 (O)\n\n\n";
-
-	std::cout << "     |     |     \n"
-		      << "  " << elem.matrix[0][0] << "  |  " << elem.matrix[0][1] << "  |  " << elem.matrix[0][2]
-		      << "\n_____|_____|_____\n"
-		      << "     |     |\n"
-		      << "  " << elem.matrix[1][0] << "  |  " << elem.matrix[1][1] << "  |  " << elem.matrix[1][2]
-		      << "\n_____|_____|_____\n"
-		      << "     |     |     \n"
-		      << "  " << elem.matrix[2][0] << "  |  " << elem.matrix[2][1] << "  |  " << elem.matrix[2][2]
-		      << "\n     |     |     \n";
 }
 public:
 	void startAndReset() {
@@ -109,13 +85,9 @@ public:
 				<< "-------------\n\n"
 				<< "CHOOSE SIDE (X or O): ";
 			std::cin >> elem.mark;
-			if (elem.mark == 'X')
-				elem.botMark = 'O';
+			elem.botMark = (elem.mark == 'X') ? 'O' : 'X';
 
-			else if (elem.mark == 'O')
-				elem.botMark = 'X';
-
-			else {
+			if(elem.mark != 'X' && elem.mark != 'O') {
 				std::cout << "\a\nINVALID INPUT! PRESS ANY KEY TO CONTINUE!\n";
 				std::cin.ignore();
 				std::cin.get();
@@ -124,7 +96,7 @@ public:
 
 		if (elem.mark == 'X') {
 			do {
-				board(choice);
+				elem.board(choice);
 				elem.player = (elem.player % 2) ? 1 : 2;
 				if (elem.player == 1) {
 					std::cout << "\n\nPLAYER! --- ENTER A NUMBER: ";
@@ -153,7 +125,7 @@ public:
 				elem.status = checkwin();
 				elem.player++;
 			} while (elem.status == -1);
-			board(choice);
+			elem.board(choice);
 			if (elem.player == 2) {
 				std::cout << "\n\nCONGRATULATIONS! PLAYER WINS!\n"
 					<< "\nDO YOU WANT TO PLAY AGAIN? (Y/N): ";
@@ -170,7 +142,7 @@ public:
 		else {
 			elem.player = 2;
 			do {
-				board(choice);
+				elem.board(choice);
 				elem.player = (elem.player % 2) ? 1 : 2;
 				if (elem.player == 1) {
 					std::cout << "\n\nPLAYER! --- ENTER A NUMBER: ";
@@ -199,7 +171,7 @@ public:
 				elem.status = checkwin();
 				elem.player++;
 			} while (elem.status == -1);
-			board(choice);
+			elem.board(choice);
 			if (elem.player == 2) {
 				std::cout << "\n\nCONGRATULATIONS! PLAYER WINS!\n"
 					<< "\nDO YOU WANT TO PLAY AGAIN? (Y/N): ";
@@ -217,7 +189,7 @@ public:
 	}
 	void twoPlayers(char& run, bool& running, char& choice) {
 		do {
-				board(choice);
+				elem.board(choice);
 				elem.player = (elem.player % 2) ? 1 : 2;
 
 				std::cout << "\n\nPLAYER " << elem.player << " --- ENTER A NUMBER: ";
@@ -242,7 +214,7 @@ public:
 				elem.status = checkwin();
 				elem.player++;
 			} while (elem.status == -1);
-			board(choice);
+			elem.board(choice);
 			if (elem.status == 1) {
 				std::cout << "\a\nCONGRATULATIONS! PLAYER " << --elem.player << " WINS!\n"
 					<< "\nDO YOU WANT TO PLAY AGAIN? (Y/N): ";
