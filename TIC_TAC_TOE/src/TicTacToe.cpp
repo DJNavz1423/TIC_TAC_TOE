@@ -1,13 +1,13 @@
 #include "TTTLogic.h"
 
-int main() {
+int main() { //main - entry point
 	TicTacToe game{};
 	bool running = true;
 	char run;
 	char choice;
 	do {
 		game.startAndReset();
-		std::cout << "TIC - TAC - TOE\n"
+		std::cout << "TIC - TAC - TOE\n" //print menu
 			<< "---------------\n\n";
 		
 		std::cout << "A. SINGLE PLAYER\n"
@@ -16,7 +16,7 @@ int main() {
 			<< "\nCHOOSE GAME MODE: ";
 		std::cin >> choice;
 
-		switch (choice) {
+		switch (choice) { // handle choices
 		case 'A':
 		case 'a':
 			game.singePlayer(run, running, choice);
@@ -29,7 +29,7 @@ int main() {
 		case 'c':
 			running = false;
 			break;
-		default:
+		default: // handle invalid input
 			std::cout << "\a\nINVALID INPUT! PRESS ANY KEY TO CONTINUE! ";
 			std::cin.ignore();
 			std::cin.get();

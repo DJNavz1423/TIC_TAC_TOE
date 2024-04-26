@@ -2,13 +2,13 @@
 #include <iostream>
 #include <windows.h>
 
-struct Elements{
+struct Elements{ // game structure
 	static const short SIZE = 3;
-	char matrix[SIZE][SIZE];
+	char matrix[SIZE][SIZE]; //board matrix
 	short player, status;
 	char mark, botMark, inputNum;
 
-	void board(char& choice)  /*prints board */ {
+	void board(char& choice)  //prints board  {
 		system("cls");
 		std::cout << "\tTIC - TAC - TOE\n"
 			<< "\t---------------\n\n";

@@ -31,7 +31,7 @@ private:
 			 }
 		 }
 	 }
-void botMove(char (&matrix)[3][3], char& botMark, char& playerSide) {
+void botMove(char (&matrix)[3][3], char& botMark, char& playerSide) { //bot logic
 	// Check if the bot can win on the next move
 	for (int i = 0; i < elem.SIZE; ++i) {
 		for (int j = 0; j < elem.SIZE; ++j) {
@@ -73,12 +73,12 @@ void botMove(char (&matrix)[3][3], char& botMark, char& playerSide) {
 	}
 }
 public:
-	void startAndReset() {
+	void startAndReset() { //set board and elements at the start and loop
 		resetMatrix();
 		elem.player = 1;
 		elem.status = -1;
 	}
-	void singePlayer(char& run, bool& running, char& choice) {
+	void singePlayer(char& run, bool& running, char& choice) { //single player method
 		do {
 			system("cls");
 			std::cout << "SINGLE PLAYER\n"
