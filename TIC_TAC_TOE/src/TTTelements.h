@@ -8,7 +8,7 @@ struct Elements{ // game structure
 	short player, status;
 	char mark, botMark, inputNum;
 
-	void board(char& choice)  //prints board  {
+	void board(char& choice) {//prints board
 		system("cls");
 		std::cout << "\tTIC - TAC - TOE\n"
 			<< "\t---------------\n\n";

@@ -58,6 +58,10 @@ void botMove(char (&matrix)[3][3], char& botMark, char& playerSide) { //bot logi
 			}
 		}
 	}
+	if (matrix[1][1] != 'X' && matrix[1][1] != 'O') {
+		matrix[1][1] = botMark;
+		return;
+	}
 	int move;
 	bool validMove = false;
 	while (!validMove) { // If no winning or blocking moves are available, make a random move
@@ -126,7 +130,13 @@ public:
 				elem.player++;
 			} while (elem.status == -1);
 			elem.board(choice);
-			if (elem.player == 2) {
+			if (checkwin() == 0) {
+				std::cout << "\n\nGAME DRAW!\n"
+					<< "\nDO YOU WANT TO PLAY AGAIN? (Y/N): ";
+				std::cin >> run;
+				running = (run == 'Y' || run == 'y') ? true : false;
+			}
+			else if (elem.player == 2) {
 				std::cout << "\n\nCONGRATULATIONS! PLAYER WINS!\n"
 					<< "\nDO YOU WANT TO PLAY AGAIN? (Y/N): ";
 				std::cin >> run;
@@ -172,7 +182,13 @@ public:
 				elem.player++;
 			} while (elem.status == -1);
 			elem.board(choice);
-			if (elem.player == 2) {
+			if (checkwin() == 0) {
+				std::cout << "\n\nGAME DRAW!\n"
+					<< "\nDO YOU WANT TO PLAY AGAIN? (Y/N): ";
+				std::cin >> run;
+				running = (run == 'Y' || run == 'y') ? true : false;
+			}
+			else if (elem.player == 2) {
 				std::cout << "\n\nCONGRATULATIONS! PLAYER WINS!\n"
 					<< "\nDO YOU WANT TO PLAY AGAIN? (Y/N): ";
 				std::cin >> run;
